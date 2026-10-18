@@ -1,0 +1,79 @@
+name: dental
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip
+  # Core scientific stack (conda-forge builds, no MKL conflicts)
+  - numpy=1.26.*
+  - scipy=1.13.*
+  - pandas=2.2.*
+  - scikit-learn=1.5.*
+  - matplotlib=3.9.*
+  - seaborn=0.13.*
+  - pillow=10.4.*
+  - tqdm=4.66.*
+  - pyyaml=6.0.*
+  - h5py=3.11.*
+  - pyarrow=17.*
+  # Image processing
+  - opencv=4.10.*
+  - imageio=2.35.*
+  - scikit-image=0.24.*
+  - imagehash=4.3.*          # perceptual hashing for near-duplicate grouping
+  # Clustering / ANN search (native builds from conda-forge)
+  - hdbscan=0.8.*
+  # Jupyter ecosystem
+  - jupyterlab=4.2.*
+  - ipywidgets=8.1.*
+  - ipykernel=6.29.*
+  - widgetsnbextension=4.0.*
+  - jupyterlab_widgets=3.0.*
+  - notebook=7.2.*
+  # GPU monitoring
+  - pynvml=11.5.*
+  # Utilities
+  - psutil=6.0.*
+  - rich=13.7.*
+  - filelock=3.15.*
+  - python-dotenv=1.0.*
+  - pip:
+    # ---------------------------------------------------------------
+    # PyTorch – CUDA 12.1 wheels (official index).
+    # VERIFY: run `nvidia-smi` and check "CUDA Version: XX.Y".
+    # If your driver reports CUDA 12.4, change cu121 -> cu124 below.
+    # ---------------------------------------------------------------
+    - --index-url https://download.pytorch.org/whl/cu121
+    - torch==2.3.1+cu121
+    - torchvision==0.18.1+cu121
+    - torchaudio==2.3.1+cu121
+    # ---------------------------------------------------------------
+    # Back to default PyPI index for everything else
+    # ---------------------------------------------------------------
+    - --extra-index-url https://pypi.org/simple
+    # YOLO (Ultralytics) – YOLO11 series
+    - ultralytics==8.3.*
+    # HuggingFace ecosystem
+    - transformers==4.44.*
+    - accelerate==0.33.*
+    - huggingface_hub==0.24.*
+    - safetensors==0.4.*
+    - timm==1.0.*
+    # SAM2 (Meta, HuggingFace-compatible)
+    - sam2==1.0.*
+    # FAISS – GPU build via pip (CPU fallback if GPU build fails)
+    - faiss-gpu==1.8.*
+    # Grad-CAM
+    - grad-cam==1.5.*
+    # Probability calibration / metrics extras
+    - scikit-plot==0.3.*
+    # ipywidgets helpers
+    - ipympl==0.9.*
+    - ipython==8.26.*
+    # Misc
+    - einops==0.8.*
+    - albumentations==1.4.*
+    - supervision==0.22.*    # bbox / mask utilities, pairs well with YOLO
+    - shapely==2.0.*
+    - umap-learn==0.5.*      # optional UMAP projection for embedding vis
